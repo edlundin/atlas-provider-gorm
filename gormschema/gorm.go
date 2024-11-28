@@ -240,6 +240,11 @@ func (m *migrator) HasTable(dst any) bool {
 	return true
 }
 
+// HasIndex always returns `true`. By returning `true`, gorm.Migrator will try to alter the table to add constraints.
+func (m *migrator) HasIndex(interface{}, string) bool {
+	return true
+}
+
 // CreateConstraints detects constraints on the given model and creates them using `m.dialectMigrator`.
 func (m *migrator) CreateConstraints(models []any) error {
 	for _, model := range m.ReorderModels(models, true) {
